@@ -1,7 +1,7 @@
-<h1 align="center">Welcome to Chainlit by Literal AI 👋</h1>
+<h1 align="center">Literal AI의 Chainlit에 오신 것을 환영합니다 👋</h1>
 
 <p align="center">
-<b>Build python production-ready conversational AI applications in minutes, not weeks ⚡️</b>
+<b>몇 주가 아닌 몇 분 만에 Python 기반의 프로덕션급 대화형 AI 애플리케이션을 구축하세요 ⚡️</b>
 
 </p>
 <p align="center">
@@ -13,9 +13,9 @@
 </p>
 
 <p align="center">
-    <a href="https://chainlit.io"><b>Website</b></a>  •  
-    <a href="https://docs.chainlit.io"><b>Documentation</b></a>  •  
-    <a href="https://help.chainlit.io"><b>Chainlit Help</b></a>  •  
+    <a href="https://chainlit.io"><b>웹사이트</b></a>  •  
+    <a href="https://docs.chainlit.io"><b>문서</b></a>  •  
+    <a href="https://help.chainlit.io"><b>Chainlit 도움말</b></a>  •  
     <a href="https://github.com/Chainlit/cookbook"><b>Cookbook</b></a>
 </p>
 
@@ -26,34 +26,34 @@
 https://github.com/user-attachments/assets/b3738aba-55c0-42fa-ac00-6efd1ee0d148
 
 > [!NOTE]
-> Chainlit is maintained by [Literal AI](https://literalai.com), an LLMOps platform to monitor and evaluate LLM applications! It works with any Python or TypeScript applications and [seamlessly](https://docs.chainlit.io/llmops/literalai) with Chainlit. For enterprise support, please fill this [form](https://docs.google.com/forms/d/e/1FAIpQLSdPVGqfuaWSC2DfunR6cY4C7kUHl0c2W7DnhzsF9bmMxrVpkg/viewform?usp=header).
+> Chainlit은 [Literal AI](https://literalai.com)에서 관리하는 LLMOps 플랫폼으로, LLM 애플리케이션을 모니터링하고 평가할 수 있습니다! Python 또는 TypeScript 애플리케이션과 호환되며, Chainlit과 [매우 쉽게 연동](https://docs.chainlit.io/llmops/literalai)할 수 있습니다. 엔터프라이즈 지원이 필요하다면 [이 양식](https://docs.google.com/forms/d/e/1FAIpQLSdPVGqfuaWSC2DfunR6cY4C7kUHl0c2W7DnhzsF9bmMxrVpkg/viewform?usp=header)을 작성해 주세요.
 
-## Installation
+## 설치 방법
 
-Open a terminal and run:
+터미널을 열고 아래 명령어를 실행하세요:
 
 ```sh
 pip install chainlit
 chainlit hello
 ```
 
-If this opens the `hello app` in your browser, you're all set!
+`hello app`이 브라우저에서 열리면 설치가 완료된 것입니다!
 
-### Development version
+### 개발 버전 설치
 
-The latest in-development version can be installed straight from GitHub with:
+최신 개발 버전은 GitHub에서 바로 설치할 수 있습니다:
 
 ```sh
 pip install git+https://github.com/Chainlit/chainlit.git#subdirectory=backend/
 ```
 
-(Requires Node and pnpm installed on the system.)
+(설치 전 Node와 pnpm이 시스템에 설치되어 있어야 합니다.)
 
-## 🚀 Quickstart
+## 🚀 빠른 시작
 
-### 🐍 Pure Python
+### 🐍 순수 Python 예제
 
-Create a new file `demo.py` with the following code:
+아래와 같이 `demo.py` 파일을 새로 만드세요:
 
 ```python
 import chainlit as cl
@@ -61,51 +61,54 @@ import chainlit as cl
 
 @cl.step(type="tool")
 async def tool():
-    # Fake tool
+    # 예시 도구
     await cl.sleep(2)
-    return "Response from the tool!"
+    return "도구에서 반환된 응답!"
 
 
-@cl.on_message  # this function will be called every time a user inputs a message in the UI
+@cl.on_message  # 사용자가 UI에 메시지를 입력할 때마다 호출됩니다.
 async def main(message: cl.Message):
     """
-    This function is called every time a user inputs a message in the UI.
-    It sends back an intermediate response from the tool, followed by the final answer.
+    이 함수는 사용자가 UI에 메시지를 입력할 때마다 호출됩니다.
+    도구의 중간 응답과 최종 답변을 순차적으로 보냅니다.
 
     Args:
-        message: The user's message.
+        message: 사용자의 메시지
 
     Returns:
-        None.
+        없음
     """
 
-
-    # Call the tool
+    # 도구 호출
     tool_res = await tool()
 
     await cl.Message(content=tool_res).send()
 ```
 
-Now run it!
+이제 실행해보세요!
 
 ```sh
 chainlit run demo.py -w
 ```
 
-<img src="/images/quick-start.png" alt="Quick Start"></img>
+<img src="/images/quick-start.png" alt="빠른 시작"></img>
 
-## 📚 More Examples - Cookbook
+## 📚 더 많은 예제 - Cookbook
 
-You can find various examples of Chainlit apps [here](https://github.com/Chainlit/cookbook) that leverage tools and services such as OpenAI, Anthropiс, LangChain, LlamaIndex, ChromaDB, Pinecone and more.
+OpenAI, Anthropic, LangChain, LlamaIndex, ChromaDB, Pinecone 등 다양한 도구와 서비스를 활용한 Chainlit 앱 예제는 [여기](https://github.com/Chainlit/cookbook)에서 확인할 수 있습니다.
 
-Tell us what you would like to see added in Chainlit using the Github issues or on [Discord](https://discord.gg/k73SQ3FyUh).
+Chainlit에 추가되었으면 하는 기능이나 예제가 있다면 Github 이슈 또는 [Discord](https://discord.gg/k73SQ3FyUh)에서 의견을 남겨주세요.
 
-## 💁 Contributing
+## 💁 기여하기
 
-As an open-source initiative in a rapidly evolving domain, we welcome contributions, be it through the addition of new features or the improvement of documentation.
+Chainlit은 빠르게 발전하는 오픈소스 프로젝트로, 새로운 기능 추가나 문서 개선 등 다양한 기여를 환영합니다.
 
-For detailed information on how to contribute, see [here](/CONTRIBUTING.md).
+기여 방법에 대한 자세한 내용은 [여기](/CONTRIBUTING.md)를 참고하세요.
 
-## 📃 License
+## 📃 라이선스
 
-Chainlit is open-source and licensed under the [Apache 2.0](LICENSE) license.
+Chainlit은 오픈소스이며 [Apache 2.0](LICENSE) 라이선스를 따릅니다.
+
+---
+
+원문은 Chainlit 공식 저장소에서 확인하실 수 있습니다.
